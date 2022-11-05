@@ -9,7 +9,16 @@
         <script src="jquery.jplayer.js"></script>
     </head>
     <body>
-        <h1>New Project</h1>
-        <p>Welcome to the new project</p>
+        <select id="deviceSelectorMain" onchange="updateDevices()"></select>
+        <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
+
+        <audio id="playerMain" controls>
+            <source src="../audio/testAudio1.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="playerMetronome" controls>
+            <source src="../audio/testAudio2.mp3" type="audio/mpeg">
+        </audio>
+
+        <script src="device-controller.js"></script>
     </body>
 </html>
