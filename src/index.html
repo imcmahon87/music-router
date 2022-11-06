@@ -5,12 +5,22 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="styles.css">
-        <script src="jquery-3.6.1.js"></script>
+        <script>window.$ = window.jQuery = require('./jquery-3.6.1.js');</script>
         <script src="jquery.jplayer.js"></script>
+        <script src="player-scripts.js"></script>
     </head>
-    <body>
+    <body onload="handleDevices()"> 
         <select id="deviceSelectorMain" onchange="updateDevices()"></select>
         <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
+
+        <!-- jPlayer Controls -->
+        <div id="jquery_jplayer_1"></div>
+        <div id="jp_container_1">
+            <a href="#" class="jp-play">Play</a>
+            <a href="#" class="jp-pause">Pause</a>
+        </div>
+        <div id="jquery_jplayer_2"></div>
+
 
         <audio id="playerMain" controls>
             <source src="../audio/testAudio1.mp3" type="audio/mpeg">

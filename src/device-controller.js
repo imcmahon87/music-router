@@ -1,18 +1,20 @@
 const fs = require('fs');
 
-// Get permission to use media devices
-navigator.mediaDevices.getUserMedia({video: false, audio: true});
-
-let audioMain = document.getElementById('playerMain');
-let audioMetronome = document.getElementById('playerMetronome');
-
+let audioDevices = {}
 let deviceList = [];
 
+// Read default devices JSON
 let rawDeviceData = fs.readFileSync('default-devices.json');
 let currentDevices = JSON.parse(rawDeviceData);
 
-// Get list of devices and populate dropdown menu
-function getDevices() {
+function handleDevices() {
+    // Get permission to use media devices
+    navigator.mediaDevices.getUserMedia({video: false, audio: true});
+
+    audioDevices.main = document.getElementById('jp_audio_0');
+    audioDevices.metronome = document.getElementById('jp_audio_1');
+
+    // Get list of devices and populate dropdown menu
     let counter = 0;
     navigator.mediaDevices.enumerateDevices()
     .then(devices => {
@@ -44,13 +46,12 @@ function getDevices() {
         // Upon initial load, set the selected option to the correct saved default
         document.getElementById('deviceSelectorMain').value = autoDisplayMain;
         document.getElementById('deviceSelectorMetronome').value = autoDisplayMetronome;
-        audioMain.setSinkId(currentDevices.deviceMain);
-        audioMetronome.setSinkId(currentDevices.deviceMetronome);
+        audioDevices.main.setSinkId(currentDevices.deviceMain);
+        audioDevices.metronome.setSinkId(currentDevices.deviceMetronome);
     })
     .catch(err => {
         console.log(err.name + ': ' + err.message);
     });
-
 
 }
 
@@ -59,8 +60,8 @@ function updateDevices() {
     // Assign devices to HTML audio elements
     let selectMain = document.getElementById('deviceSelectorMain').value;
     let selectMetronome = document.getElementById('deviceSelectorMetronome').value;
-    audioMain.setSinkId(deviceList[selectMain]);
-    audioMetronome.setSinkId(deviceList[selectMetronome]);
+    audioDevices.main.setSinkId(deviceList[selectMain]);
+    audioDevices.metronome.setSinkId(deviceList[selectMetronome]);
 
     // Automatically save settings to JSON file
     currentDevices.deviceMain = deviceList[selectMain];
@@ -68,5 +69,3 @@ function updateDevices() {
 
     fs.writeFileSync('default-devices.json', JSON.stringify(currentDevices, null, 2));
 }
-
-getDevices();
