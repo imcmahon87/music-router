@@ -9,7 +9,7 @@
   "author": "Ian McMahon",
   "license": "ISC",
   "dependencies": {
-    "electron": "^21.2.2",
+    "electron": "^21.2.3",
     "node-hid": "^2.1.2"
   }
 }

@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-let audioDevices = {}
+let audioDevices = {};
 let deviceList = [];
 
 // Read default devices JSON

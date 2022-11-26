@@ -1,0 +1,104 @@
+.jp-jplayer,.jp-audio {
+    width: 300px;
+    margin: 0px auto;
+}
+.jp-title {
+    text-align: center;
+    color: #999;
+}
+ 
+.jp-title ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+.jp-gui {
+  position: relative;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+.jp-controls {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+ 
+.jp-controls li {
+    display: inline;
+}
+ 
+.jp-controls a {
+    color: #fff;
+}
+.jp-play,.jp-pause {
+    width: 40px;
+    height: 45px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 15px;
+}
+ 
+.jp-controls .jp-play:hover,.jp-controls .jp-pause:hover {
+    background-color: #808080;
+    cursor: default;
+}
+ 
+.jp-mute,.jp-unmute {
+    position: absolute;
+    right: 60px;
+    top: 0;
+    width: 40px;
+    height: 45px;
+    padding-top: 12px;
+    padding-left: 10px;
+    display: inline-block;
+}
+
+.jp-controls .jp-mute:hover,.jp-controls .jp-unmute:hover {
+    background-color: #808080;
+    cursor: default;
+}
+ 
+.jp-mute {
+    text-align: left;
+}
+.jp-time-holder {
+    color: black;
+    font: 14px 'Open Sans', sans-serif;
+    line-height: 14px;
+    position: absolute;
+    right: 107px;
+    top: 16px;
+}
+.jp-progress {
+    background-color: #262626;
+    border-radius: 20px 20px 20px 20px;
+    overflow: hidden;
+    position: absolute;
+    right: 155px;
+    top: 19px;
+    width: 100px;
+}
+ 
+.jp-play-bar {
+    height: 8px;
+    background-color: #6666CC;
+    border-radius: 20px 20px 20px 20px;
+}
+ 
+.jp-volume-bar {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+    width: 45px;
+    height: 8px;
+    border-radius: 20px 20px 20px 20px;
+    background-color: #262626;
+    overflow: hidden;
+}
+ 
+.jp-volume-bar-value {
+    background-color: #6666CC;
+    height: 10px;
+    border-radius: 20px 20px 20px 20px;
+}
