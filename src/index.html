@@ -17,6 +17,7 @@
                     autoOpen: false
                 });
             });
+            let currentDirectory = __dirname;
         </script>
     </head>
     <body onload="handleDevices()"> 
@@ -54,6 +55,10 @@
         <!-- Second, invisible jPlayer for metronome track -->
         <div id="jquery_jplayer_2"></div>
 
+        <div id="playlistButtons">
+            <button type="button" onclick="loadPlaylist();">Load Playlist</button>
+            <button type="button" onclick="savePlaylist();">Save Playlist</button>
+        </div>
         <div id="playlistContainer">
         </div>
 

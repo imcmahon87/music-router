@@ -1,6 +1,5 @@
-path = require('path');
 
-function readDirectoryTracks() {
+function readDirectoryPlaylists() {
 
     let directoryContents = fs.readdirSync(currentDirectory);
     let folders = ['../'];
@@ -33,7 +32,7 @@ function readDirectoryTracks() {
 // When clicking a folder, re-display the directory contents
 function setDirectory(newDir) {
     currentDirectory = path.join(currentDirectory, '/' + newDir);
-    readDirectoryTracks();
+    readDirectoryPlaylists();
 }
 
 // When clicking a file, assign it to the corresponding track
@@ -46,7 +45,6 @@ function setFile(file) {
     }
     $( "#trackSelector" ).dialog('close');
     renderPlaylist();
-    setActiveTrack();
 }
 
-// readDirectoryTracks();
+readDirectoryPlaylists();
