@@ -21,28 +21,28 @@ function readDirectoryTracks() {
     trackSelector = document.getElementById('trackSelector')
     trackSelector.innerHTML = '';
     for (let i = 0; i < folders.length; i++) {
-        trackSelector.innerHTML += '<div class="folder" onclick="setDirectory(\'' + folders[i] + '\')">' + folders[i] + '</div>';
+        trackSelector.innerHTML += '<div class="folder" onclick="setDirectoryTracks(\'' + folders[i] + '\')">' + folders[i] + '</div>';
     }
     for (let i = 0; i < files.length; i++) {
         if (files[i].endsWith('.mp3') || files[i].endsWith('.wav')) {
-            trackSelector.innerHTML += '<div class="file" onclick="setFile(\'' + files[i] + '\')">' + files[i] + '</div>';
+            trackSelector.innerHTML += '<div class="file" onclick="setFileTracks(\'' + files[i] + '\')">' + files[i] + '</div>';
         }
     }
 }
 
 // When clicking a folder, re-display the directory contents
-function setDirectory(newDir) {
+function setDirectoryTracks(newDir) {
     currentDirectory = path.join(currentDirectory, '/' + newDir);
     readDirectoryTracks();
 }
 
 // When clicking a file, assign it to the corresponding track
-function setFile(file) {
+function setFileTracks(file) {
     fullPath = path.normalize(currentDirectory + '/' + file);
     if (trackIdentifierMain === 1) {
-        playlist[trackIdentifier].fileMain = fullPath;
+        playlist.tracks[trackIdentifier].fileMain = fullPath;
     } else {
-        playlist[trackIdentifier].fileMetronome = fullPath;
+        playlist.tracks[trackIdentifier].fileMetronome = fullPath;
     }
     $( "#trackSelector" ).dialog('close');
     renderPlaylist();

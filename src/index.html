@@ -12,11 +12,18 @@
         <script src="player-scripts.js"></script>
         <script src="jquery-ui.js"></script>
         <script>
+            // Generate jQuery UI dialog boxes
             $(function () {
                 $('#trackSelector').dialog({
                     autoOpen: false
                 });
             });
+            $(function () {
+                $('#playlistSelector').dialog({
+                    autoOpen: false
+                });
+            });
+            // Initial directory for browsing boxes
             let currentDirectory = __dirname;
         </script>
     </head>
@@ -56,27 +63,23 @@
         <div id="jquery_jplayer_2"></div>
 
         <div id="playlistButtons">
-            <button type="button" onclick="loadPlaylist();">Load Playlist</button>
-            <button type="button" onclick="savePlaylist();">Save Playlist</button>
+            <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
+                                           readDirectoryPlaylists();
+                                           $('#playlistSelector').dialog('open');">Load Playlist</button>
+            <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
+                                           savePlaylist();">Save Playlist</button>
+            <button type="button" onclick="closePlaylist();">Close Playlist</button>
         </div>
         <div id="playlistContainer">
+            <div id="playlistHeader"></div>
         </div>
 
-        <!--
-        <div id="trackContainer">
-            <div id="trackName">Track Name</div>
-            <div id="trackFileMain">
-                Main File
-            </div>
-            <button type="button" onclick="$('#trackSelector').dialog('open');">Load Main</button>
-            <div id="trackFileMetronome">
-                Metronome File
-            </div>
-            <button type="button">Load Metronome</button>
-        </div>
-        -->
-
+        <!-- Popup div will be populated when selecting a track -->
         <div id="trackSelector" title="Select Track">
+
+        </div>
+        <!-- Popup div will be populated when selecting a playlist -->
+        <div id="playlistSelector" title="Select Playlist">
 
         </div>
 
@@ -87,6 +90,8 @@
         </audio>
         <script src="playlist-handler.js"></script>
         <script src="device-controller.js"></script>
+        <script src="editing-handler.js"></script>
         <script src="selector-tracks.js"></script>
+        <script src="selector-playlists.js"></script>
     </body>
 </html>

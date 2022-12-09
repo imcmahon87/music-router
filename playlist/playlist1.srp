@@ -1,0 +1,26 @@
+{
+  "name": "My first playlist",
+  "tracks": [
+    {
+        "name": "As Above",
+        "fileMain": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\asAboveInstruments.mp3",
+        "fileMetronome": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\asAboveInstruments_METRONOME.mp3",
+        "continue": 0,
+        "continuePause": 0
+    },
+    {
+        "name": "Test Audio",
+        "fileMain": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio1.mp3",
+        "fileMetronome": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio2.mp3",
+        "continue": 1,
+        "continuePause": 4
+    },
+    {
+        "name": "Yet another",
+        "fileMain": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio1.mp3",
+        "fileMetronome": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio2.mp3",
+        "continue": 0,
+        "continuePause": 1
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "New Playlist",
+  "tracks": [
+    {
+      "name": "New Track",
+      "fileMain": "",
+      "fileMetronome": "",
+      "continue": 0,
+      "continuePause": 0
+    },
+    {
+      "name": "New Track",
+      "fileMain": "",
+      "fileMetronome": "",
+      "continue": 0,
+      "continuePause": 0
+    }
+  ]
+}
