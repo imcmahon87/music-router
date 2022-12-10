@@ -3,7 +3,7 @@ $(document).ready(function(){
     $("#jquery_jplayer_1").jPlayer({
         ready: function () {
             $(this).jPlayer("setMedia", {
-                mp3: "../audio/asAboveInstruments.mp3",
+                mp3: '',
             });
             $(this).bind($.jPlayer.event.ended, function(event) {
                 trackEnded();
@@ -20,7 +20,7 @@ $(document).ready(function(){
     $("#jquery_jplayer_2").jPlayer({
         ready: function () {
             $(this).jPlayer("setMedia", {
-            mp3: "../audio/asAboveInstruments_METRONOME.mp3",
+            mp3: '',
             });
         },
         swfPath: "/js",

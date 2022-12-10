@@ -2,6 +2,7 @@
 let editing = 0;
 // For listening to whether mouse is in the click zone during editing
 let mouseActiveArea;
+// trackIdentifier will be passed to the track variable so the editing field variable doesn't change mid-edit
 let track;
 
 function editingHandler(type, element) {

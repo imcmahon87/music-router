@@ -5,7 +5,7 @@ let trackIdentifierMain = 0;
 // Which track will play
 let activeTrack = 0;
 // Used in selector-playlists.js
-let playlistFile = '';
+let playlistFile = 'No playlist file';
 
 let trackMain = '';
 let trackMetronome = '';
@@ -89,6 +89,7 @@ function trackEnded() {
 }
 
 function startNext() {
+    // If there is another track after
     if (activeTrack <= playlist.tracks.length - 2) {
         activeTrack += 1;
         setActiveTrack();
@@ -118,7 +119,40 @@ function deleteTrack(track) {
 }
 
 function closePlaylist() {
+    $('#savePlaylistPrompt').dialog('open');
+    let prompt = document.getElementById('savePlaylistPrompt');
+    prompt.innerHTML = '<h3>Save Playlist?</h3>' +
+                       '<button type="button" onclick="savePlaylist(); closePlaylistExecute(); $(\'#savePlaylistPrompt\').dialog(\'close\');">Yes</button>' +
+                       '<button type="button" onclick="closePlaylistExecute(); $(\'#savePlaylistPrompt\').dialog(\'close\');">No</button>';
 }
+
+function closePlaylistExecute() {
+    playlist = {
+        name: 'New Playlist',
+        tracks: []
+    };
+    playlistFile = 'No playlist file';
+    renderPlaylist();
+}
+
+function deletePlaylist() {
+    $('#deletePlaylistPrompt').dialog('open');
+    let prompt = document.getElementById('deletePlaylistPrompt');
+    prompt.innerHTML = '<h3>Delete Playlist?</h3>' +
+                       '<button type="button" onclick="deletePlaylistExecute(); $(\'#savePlaylistPrompt\').dialog(\'close\');">Yes</button>' +
+                       '<button type="button" onclick="$(\'#deletePlaylistPrompt\').dialog(\'close\');">No</button>';
+}
+
+function deletePlaylistExecute() {
+    try {
+        fs.unlinkSync(playlistFile);
+    } catch(err) {
+        console.error(err);
+    }
+    closePlaylistExecute();
+    $('#deletePlaylistPrompt').dialog('close');
+}
+
 
 renderPlaylist();
 setActiveTrack(0);

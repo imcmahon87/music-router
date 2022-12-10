@@ -23,6 +23,16 @@
                     autoOpen: false
                 });
             });
+            $(function () {
+                $('#savePlaylistPrompt').dialog({
+                    autoOpen: false
+                });
+            });
+            $(function () {
+                $('#deletePlaylistPrompt').dialog({
+                    autoOpen: false
+                });
+            });
             // Initial directory for browsing boxes
             let currentDirectory = __dirname;
         </script>
@@ -69,6 +79,8 @@
             <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
                                            savePlaylist();">Save Playlist</button>
             <button type="button" onclick="closePlaylist();">Close Playlist</button>
+            <button type="button" onclick="deletePlaylist();">Delete Playlist</button>
+            <button type="button" onclick="toggleMode();">Toggle Mode</button>
         </div>
         <div id="playlistContainer">
             <div id="playlistHeader"></div>
@@ -82,6 +94,14 @@
         <div id="playlistSelector" title="Select Playlist">
 
         </div>
+        <!-- Pop div will be populated when asked whether to save -->
+        <div id="savePlaylistPrompt" title="Save Playlist?">
+
+        </div>
+        <!-- Pop div will be populated when asked whether to delete -->
+        <div id="deletePlaylistPrompt" title="Delete Playlist?">
+
+        </div>
 
         <!-- Unrelated audio element, for some reason device-controller cannot grab the actual
             audio elements by their IDs without this existing. Uncertain why this is -->
@@ -90,6 +110,7 @@
         </audio>
         <script src="playlist-handler.js"></script>
         <script src="device-controller.js"></script>
+        <script src="pedal-handler.js"></script>
         <script src="editing-handler.js"></script>
         <script src="selector-tracks.js"></script>
         <script src="selector-playlists.js"></script>

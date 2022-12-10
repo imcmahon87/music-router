@@ -1,3 +1,4 @@
+const path = require('path');
 let editingPlaylistName = 0;
 
 function readDirectoryPlaylists() {
@@ -45,24 +46,33 @@ function setFilePlaylists(file) {
     playlist.tracks = currentPlaylistData.tracks;
     $( "#playlistSelector" ).dialog('close');
     renderPlaylist();
+    activeTrack = 0;
+    setActiveTrack();
     playlist.name = currentPlaylistData.name;
     playlistFile = fullPath;
     document.getElementById('playlistHeader').innerHTML = '<h2 id="playlistName" onclick="editingHandler(3, \'playlistHeader\');">' + playlist.name + '</h2>' + fullPath;
 }
 
 function savePlaylist() {
-    if (playlistFile == '') {
+    if (playlistFile == 'No playlist file') {
         $('#playlistSelector').dialog('open');
         let inputBox = document.getElementById('playlistSelector');
         inputBox.innerHTML = '<input id="activeInput" value="newplaylist.srp">' +
-                             '<button type="button" onclick="savePlaylistExecute();">Save Playlist</button>';
+                             '<button type="button" onclick="savePlaylistExecute(true);">Save Playlist</button>';
+    } else {
+        savePlaylistExecute(false);
     }
 }
 
-function savePlaylistExecute() {
-    let saveName = document.getElementById('activeInput').value;
-    if (!saveName.endsWith('.srp')) {
-        saveName = saveName + '.srp';
+function savePlaylistExecute(newName) {
+    let saveName;
+    if (newName) {
+        saveName = document.getElementById('activeInput').value;
+        if (!saveName.endsWith('.srp')) {
+            saveName = saveName + '.srp';
+        }
+    } else {
+        saveName = path.basename(playlistFile);
     }
     $( "#playlistSelector" ).dialog('close');
     fs.writeFileSync('./playlist/' + saveName, JSON.stringify(playlist, null, 2));
