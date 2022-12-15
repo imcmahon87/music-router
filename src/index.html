@@ -38,40 +38,49 @@
         </script>
     </head>
     <body onload="handleDevices()"> 
-        <select id="deviceSelectorMain" onchange="updateDevices()"></select>
-        <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
-
-        <!-- jPlayer Controls -->
-        <div id="jquery_jplayer_1"></div>
-        <div id="jp_container_1" class="jp-audio">
-            <div class="jp-type-single">
-                <div class="jp-gui jp-interface">
-                    <ul class="jp-controls">
-                        <li><a href="javascript:;" class="jp-play" tabindex="1"><img src="images/playButton.png" alt="Play button"></a></li>
-                        <li><a href="javascript:;" class="jp-pause" tabindex="1"><img src="images/pauseButton.png" alt="Pause button"></a></li>
-                        <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><img src="images/volumeButton.png" alt="Volume Icon"></a></li>
-                        <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute"><img src="images/muteButton.png" alt="Mute button"></a></li>
-                    </ul>
-                    <div class="jp-progress">
-                        <div class="jp-seek-bar">
-                            <div class="jp-play-bar"></div>
+        <div id="header">
+            <!-- jPlayer Controls -->
+            <div id="jquery_jplayer_1"></div>
+            <div id="jp_container_1" class="jp-audio">
+                <div class="jp-type-single">
+                    <div class="jp-gui jp-interface">
+                        <ul class="jp-controls">
+                            <li><a href="javascript:;" class="jp-play" tabindex="1"><img src="images/playButton.png" alt="Play button"></a></li>
+                            <li><a href="javascript:;" class="jp-pause" tabindex="1"><img src="images/pauseButton.png" alt="Pause button"></a></li>
+                            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><img src="images/volumeButton.png" alt="Volume Icon"></a></li>
+                            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute"><img src="images/muteButton.png" alt="Mute button"></a></li>
+                        </ul>
+                        <div class="jp-progress">
+                            <div class="jp-seek-bar">
+                                <div class="jp-play-bar"></div>
+                            </div>
+                        </div>
+                        <div class="jp-time-holder">
+                            <div class="jp-current-time"></div>
+                        </div>
+                        <div class="jp-volume-bar">
+                            <div class="jp-volume-bar-value"></div>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Player Error</span>
                         </div>
                     </div>
-                    <div class="jp-time-holder">
-                        <div class="jp-current-time"></div>
-                    </div>
-                    <div class="jp-volume-bar">
-                        <div class="jp-volume-bar-value"></div>
-                    </div>
-                    <div class="jp-no-solution">
-                        <span>Player Error</span>
-                    </div>
                 </div>
+                <button type="button" onclick="toggleMode();">Toggle Mode</button>
             </div>
+            <!-- Second, invisible jPlayer for metronome track -->
+            <div id="jquery_jplayer_2"></div>
         </div>
-        <!-- Second, invisible jPlayer for metronome track -->
-        <div id="jquery_jplayer_2"></div>
-
+        <!-- Device selectors -->
+        <div class="custom-select-main" style="width:200px;">
+            <select id="deviceSelectorMain" onchange="updateDevices()"></select>
+        </div>
+        <div class="custom-select-metronome" style="width:200px;">
+            <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
+        </div>
+        
+        
+        <!-- Playlist Buttons -->
         <div id="playlistButtons">
             <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
                                            readDirectoryPlaylists();
@@ -80,12 +89,11 @@
                                            savePlaylist();">Save Playlist</button>
             <button type="button" onclick="closePlaylist();">Close Playlist</button>
             <button type="button" onclick="deletePlaylist();">Delete Playlist</button>
-            <button type="button" onclick="toggleMode();">Toggle Mode</button>
         </div>
+        <!-- Playlist Container -->
         <div id="playlistContainer">
             <div id="playlistHeader"></div>
         </div>
-
         <!-- Popup div will be populated when selecting a track -->
         <div id="trackSelector" title="Select Track">
 
@@ -108,6 +116,7 @@
         <audio>
             <source src="../audio/testAudio1.mp3" type="audio/mpeg">
         </audio>
+        <script src="selectbox-handler.js"></script>
         <script src="playlist-handler.js"></script>
         <script src="device-controller.js"></script>
         <script src="pedal-handler.js"></script>

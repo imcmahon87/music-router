@@ -52,7 +52,6 @@ function editingHandler(type, element) {
         }
         if (editing === 3) {
             let activeArea = document.getElementById(element);
-            console.log('test');
             activeArea.innerHTML = '<input id="activeInput" value="' + playlist.name + '">';
             mouseActiveArea = true;
             activeArea.addEventListener('mouseover', () => {
@@ -62,10 +61,8 @@ function editingHandler(type, element) {
                 mouseActiveArea = false;
             });
             document.addEventListener('click', () => {
-                console.log('what');
                 if (mouseActiveArea === false) {
                     if (editing === 3) {
-                        console.log('whaaaaat');
                         changePlaylistName();
                     }
                 }
