@@ -12,6 +12,14 @@
     src: url('../Roboto-Regular.ttf');
 }
 
+* {
+    box-sizing: border-box;
+}
+
+h3 {
+    color: #e6e6e6;
+}
+
 body::-webkit-scrollbar {
     display: none;
 }
@@ -30,34 +38,87 @@ body {
     background-color: #1a1a1a;
 }
 
+#selectorsWrapper {
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 4em 0;
+    text-align: center;
+    display: flex;
+    overflow: visible;
+    height: fit-content;
+}
 
+#selectorsWrapperInner {
+    display: flex;
+    max-width: fit-content;
+    margin: 0 auto;
+}
 
+#selectorsWrapperLeft {
+    display: inline-block;
+}
 
+#selectorsWrapperLeft {
+    display: inline-block;
+}
+
+#playlistButtons {
+    margin: 0 auto;
+    padding: 1em;
+    max-width: fit-content;
+}
+
+.button {
+    background-color: #404040;
+    font-size: 1em;
+    font-family: 'Roboto', sans-serif;
+    color: #e6e6e6;
+    border: none;
+    border-radius: 20px;
+    padding: 1em;
+}
+
+.button:enabled:active {
+    background-color: #808080;
+}
+
+.button:disabled {
+    opacity: 0.5;
+}
+
+/* Dropdown menus: */
 /*the container must be positioned relative:*/
 .custom-select-main {
     position: relative;
-    font-family: Arial;
-  }
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 1.5em;
+}
 
-  .custom-select-metronome {
+.custom-select-metronome {
     position: relative;
-    font-family: Arial;
-  }
-  
-  .custom-select-main select {
-    display: none; /*hide original SELECT element:*/
-  }
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    display: inline-block;
+    margin: 0 1.5em;
+}
 
-  .custom-select-metronome select {
+.custom-select-main select {
     display: none; /*hide original SELECT element:*/
-  }
-  
-  .select-selected {
-    background-color: DodgerBlue;
-  }
-  
-  /*style the arrow inside the select element:*/
-  .select-selected:after {
+}
+
+.custom-select-metronome select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: #400080;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
     position: absolute;
     content: "";
     top: 14px;
@@ -66,39 +127,41 @@ body {
     height: 0;
     border: 6px solid transparent;
     border-color: #fff transparent transparent transparent;
-  }
-  
-  /*point the arrow upwards when the select box is open (active):*/
-  .select-selected.select-arrow-active:after {
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
     border-color: transparent transparent #fff transparent;
     top: 7px;
-  }
-  
-  /*style the items (options), including the selected item:*/
-  .select-items div,.select-selected {
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
     color: #ffffff;
-    padding: 8px 16px;
-    border: 1px solid transparent;
-    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    padding: 8px 32px 8px 16px;
+    border: 2px solid;
+    border-radius: 20px;
+    border-color: transparent transparent rgba(54, 0, 99, 0.7) transparent;
     cursor: pointer;
     user-select: none;
-  }
-  
-  /*style items (options):*/
-  .select-items {
+}
+
+/*style items (options):*/
+.select-items {
     position: absolute;
-    background-color: DodgerBlue;
+    background-color: #400080;
+    border-radius: 20px;
     top: 100%;
     left: 0;
     right: 0;
     z-index: 99;
-  }
-  
-  /*hide the items when the select box is closed:*/
-  .select-hide {
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
     display: none;
-  }
-  
-  .select-items div:hover, .same-as-selected {
+}
+
+.select-items div:hover, .same-as-selected {
     background-color: rgba(0, 0, 0, 0.1);
-  }
+}

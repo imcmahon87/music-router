@@ -21,13 +21,13 @@ function renderPlaylist() {
         const track = document.createElement('div');
         track.innerHTML += '<div class="trackContainer" id="trackContainer' + i + '">' +
                              '<div class="trackName" id="trackName' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(1, \'trackName\' + trackIdentifier);"><h3 id="trackHeader' + i + '">' + playlist.tracks[i].name + '</h3></div>' +
-                             '<div class="trackFileMain">' + playlist.tracks[i].fileMain + '</div>' +
+                             '<div class="trackFileMain">' + path.basename(playlist.tracks[i].fileMain) + '</div>' +
                              '<button type="button" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 1; ' +
                                'currentDirectory = path.join(__dirname, \'../audio\');' +
                                'readDirectoryTracks();' +
                                '$(\'#trackSelector\').dialog(\'open\');">Main File</button>' +
-                             '<div class="trackFileMetronome">' + playlist.tracks[i].fileMetronome + '</div>' +
+                             '<div class="trackFileMetronome">' + path.basename(playlist.tracks[i].fileMetronome) + '</div>' +
                              '<button type="button" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 0; ' +
                                'currentDirectory = path.join(__dirname, \'../audio\');' +

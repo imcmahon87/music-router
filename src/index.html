@@ -11,28 +11,55 @@
         <script src="jquery.jplayer.js"></script>
         <script src="player-scripts.js"></script>
         <script src="jquery-ui.js"></script>
+        <link rel="stylesheet" type="text/css" href="styles-ui-override.css">
         <script>
             // Generate jQuery UI dialog boxes
             $(function () {
                 $('#trackSelector').dialog({
-                    autoOpen: false
+                    autoOpen: false,
+                    open: function( event, ui ) {
+                        $('.button').prop('disabled', true);
+                    },
+                    close: function( event, ui ) {
+                        $('.button').prop('disabled', false);
+                    }
                 });
             });
             $(function () {
                 $('#playlistSelector').dialog({
-                    autoOpen: false
+                    autoOpen: false,
+                    open: function( event, ui ) {
+                        $('.button').prop('disabled', true);
+                    },
+                    close: function( event, ui ) {
+                        $('.button').prop('disabled', false);
+                    }
                 });
             });
             $(function () {
                 $('#savePlaylistPrompt').dialog({
-                    autoOpen: false
+                    autoOpen: false,
+                    open: function( event, ui ) {
+                        $('.button').prop('disabled', true);
+                    },
+                    close: function( event, ui ) {
+                        $('.button').prop('disabled', false);
+                    }
                 });
             });
             $(function () {
                 $('#deletePlaylistPrompt').dialog({
-                    autoOpen: false
+                    autoOpen: false,
+                    open: function( event, ui ) {
+                        $('.button').prop('disabled', true);
+                    },
+                    close: function( event, ui ) {
+                        $('.button').prop('disabled', false);
+                    }
                 });
             });
+            // jQuery UI Accordian
+
             // Initial directory for browsing boxes
             let currentDirectory = __dirname;
         </script>
@@ -72,23 +99,34 @@
             <div id="jquery_jplayer_2"></div>
         </div>
         <!-- Device selectors -->
-        <div class="custom-select-main" style="width:200px;">
-            <select id="deviceSelectorMain" onchange="updateDevices()"></select>
+        <div id="accordion">
+            <h3>Select Devices</h3>
+            <div id="selectorsWrapper">
+                <div id="selectorsWrapperInner">
+                    <div id="selectorsWrapperLeft">
+                        <h3>Main Device</h3>
+                        <div class="custom-select-main" style="width:200px;">
+                            <select id="deviceSelectorMain" onchange="updateDevices()"></select>
+                        </div>
+                    </div>
+                    <div id="selectorsWrapperRight">
+                        <h3>Metronome Device</h3>
+                        <div class="custom-select-metronome" style="width:200px;">
+                            <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="custom-select-metronome" style="width:200px;">
-            <select id="deviceSelectorMetronome" onchange="updateDevices()"></select>
-        </div>
-        
-        
         <!-- Playlist Buttons -->
         <div id="playlistButtons">
-            <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
+            <button type="button" class="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
                                            readDirectoryPlaylists();
                                            $('#playlistSelector').dialog('open');">Load Playlist</button>
-            <button type="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
+            <button type="button" class="button" onclick="currentDirectory = path.join(__dirname, '../playlist');
                                            savePlaylist();">Save Playlist</button>
-            <button type="button" onclick="closePlaylist();">Close Playlist</button>
-            <button type="button" onclick="deletePlaylist();">Delete Playlist</button>
+            <button type="button" class="button" onclick="closePlaylist();">Close Playlist</button>
+            <button type="button" class="button" onclick="deletePlaylist();">Delete Playlist</button>
         </div>
         <!-- Playlist Container -->
         <div id="playlistContainer">
@@ -116,6 +154,12 @@
         <audio>
             <source src="../audio/testAudio1.mp3" type="audio/mpeg">
         </audio>
+        <script>
+            $( "#accordion" ).accordion({
+                active: false,
+                collapsible: true
+            });
+        </script>
         <script src="selectbox-handler.js"></script>
         <script src="playlist-handler.js"></script>
         <script src="device-controller.js"></script>

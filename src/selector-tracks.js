@@ -48,5 +48,3 @@ function setFileTracks(file) {
     renderPlaylist();
     setActiveTrack();
 }
-
-// readDirectoryTracks();
