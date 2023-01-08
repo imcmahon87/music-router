@@ -12,7 +12,7 @@ function editingHandler(type, element) {
         if (editing === 1) {
             track = trackIdentifier;
             let activeArea = document.getElementById(element);
-            activeArea.innerHTML = '<input id="activeInput' + track + '" value="' + playlist.tracks[track].name + '">';
+            activeArea.innerHTML = '<input id="activeInput' + track + '" class="inputTrack" value="' + playlist.tracks[track].name + '">';
             mouseActiveArea = true;
             console.log('in reset');
             activeArea.addEventListener('mouseover', () => {
@@ -34,7 +34,7 @@ function editingHandler(type, element) {
         if (editing === 2) {
             track = trackIdentifier;
             let activeArea = document.getElementById(element);
-            activeArea.innerHTML = '<input id="activeInput' + track + '" value="' + playlist.tracks[track].continuePause + '">';
+            activeArea.innerHTML = '<input id="activeInput' + track + '" class="inputPause" value="' + playlist.tracks[track].continuePause + '">';
             mouseActiveArea = true;
             activeArea.addEventListener('mouseover', () => {
                 mouseActiveArea = true;
@@ -52,7 +52,7 @@ function editingHandler(type, element) {
         }
         if (editing === 3) {
             let activeArea = document.getElementById(element);
-            activeArea.innerHTML = '<input id="activeInput" value="' + playlist.name + '">';
+            activeArea.innerHTML = '<input id="activeInput" class="inputPlaylist" value="' + playlist.name + '">';
             mouseActiveArea = true;
             activeArea.addEventListener('mouseover', () => {
                 mouseActiveArea = true;

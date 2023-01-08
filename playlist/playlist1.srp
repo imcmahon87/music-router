@@ -19,7 +19,7 @@
       "name": "Yet another",
       "fileMain": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio1.mp3",
       "fileMetronome": "C:\\Users\\imcma\\Documents\\NodeTest\\Music Router\\audio\\testAudio2.mp3",
-      "continue": 0,
+      "continue": 1,
       "continuePause": 1
     }
   ]

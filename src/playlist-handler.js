@@ -20,27 +20,39 @@ function renderPlaylist() {
     for (let i = 0; i < playlist.tracks.length; i++) {
         const track = document.createElement('div');
         track.innerHTML += '<div class="trackContainer" id="trackContainer' + i + '">' +
-                             '<div class="trackName" id="trackName' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(1, \'trackName\' + trackIdentifier);"><h3 id="trackHeader' + i + '">' + playlist.tracks[i].name + '</h3></div>' +
-                             '<div class="trackFileMain">' + path.basename(playlist.tracks[i].fileMain) + '</div>' +
-                             '<button type="button" onclick="trackIdentifier = ' + i + '; ' +
+                             '<div class="trackHeader"><div class="trackName" id="trackName' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(1, \'trackName\' + trackIdentifier);"><h3 id="trackHeader' + i + '">' + playlist.tracks[i].name + '</h3></div>' +
+                             '<button type="button" class="button2" style="float: right;" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button></div>' +
+                             '<div class="trackContent"><button type="button" class="button4" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 1; ' +
                                'currentDirectory = path.join(__dirname, \'../audio\');' +
                                'readDirectoryTracks();' +
                                '$(\'#trackSelector\').dialog(\'open\');">Main File</button>' +
-                             '<div class="trackFileMetronome">' + path.basename(playlist.tracks[i].fileMetronome) + '</div>' +
-                             '<button type="button" onclick="trackIdentifier = ' + i + '; ' +
+                             '<div class="trackFileMain">' + path.basename(playlist.tracks[i].fileMain) + '</div><br>' +
+                             '<button type="button" class="button4" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 0; ' +
                                'currentDirectory = path.join(__dirname, \'../audio\');' +
                                'readDirectoryTracks();' +
                                '$(\'#trackSelector\').dialog(\'open\');">Metronome File</button>' +
-                             '<button type="button" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button>' +
-                             '<button type="button" onclick="toggleContinue(\'' + i + '\');">Toggle continue</button>' +
+                             '<div class="trackFileMetronome">' + path.basename(playlist.tracks[i].fileMetronome) + '</div></div>' +
+                             '<div class="trackFooter"><button id="toggleButton' + i + '" type="button" class="button2" onclick="toggleContinue(\'' + i + '\');">Toggle continue</button>' +
                              '<div class="trackPause" id="trackPause' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(2, \'trackPause\' + trackIdentifier);">' + playlist.tracks[i].continuePause + '</div>' +
-                             '<button type="button" onclick="deleteTrack(\'' + i + '\');">Delete track</button>' +
+                             '<button type="button" class="button2" style="float: right;" onclick="deleteTrack(\'' + i + '\');">Delete track</button></div>' +
                             '</div>';
         document.getElementById('playlistContainer').appendChild(track);
+        // Shade the Toggle Continue button appropriately
+        if (playlist.tracks[i].continue) {
+            let toggleButton = document.getElementById('toggleButton' + i);
+            let number = document.getElementById('trackPause' + i);
+            number.style.display = 'inline';
+            toggleButton.style.background = '#3333cc';
+        } else {
+            let toggleButton = document.getElementById('toggleButton' + i);
+            let number = document.getElementById('trackPause' + i);
+            number.style.display = 'none';
+            toggleButton.style.background = '#808080';
+        }
     }
-    document.getElementById('playlistContainer').innerHTML += '<button type="button" onclick="addTrack();">Add track</button>';
+    document.getElementById('playlistContainer').innerHTML += '<button type="button" class="button3" onclick="addTrack();">Add track</button>';
 }
 
 function setActiveTrack() {
@@ -57,9 +69,9 @@ function setActiveTrack() {
         // Set track background to purple
         let activeDiv = document.getElementById('trackContainer' + activeTrack);
         for (let i = 0; i < playlist.tracks.length; i++) {
-            document.getElementById('trackContainer' + i).style.backgroundColor = '#ffffff';
+            document.getElementById('trackContainer' + i).style.backgroundColor = '#404040';
         }
-        activeDiv.style.backgroundColor = '#e6ccff';
+        activeDiv.style.backgroundColor = '#400080';
     
         trackMain = playlist.tracks[activeTrack].fileMain;
         trackMetronome = playlist.tracks[activeTrack].fileMetronome;
@@ -75,8 +87,17 @@ function setActiveTrack() {
 function toggleContinue(track) {
     if (playlist.tracks[track].continue) {
         playlist.tracks[track].continue = 0;
+        let button = document.getElementById('toggleButton' + track);
+        let number = document.getElementById('trackPause' + track);
+        number.style.display = 'none';
+        button.style.background = '#808080';
     } else {
         playlist.tracks[track].continue = 1;
+        let button = document.getElementById('toggleButton' + track);
+        let number = document.getElementById('trackPause' + track);
+        number.style.display = 'inline';
+        button.style.background = '#3333cc';
+
     }
     console.log(playlist.tracks[track].continue);
 }
