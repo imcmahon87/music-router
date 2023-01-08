@@ -91,9 +91,9 @@ device.on('data', function(data) {
 function toggleMode() {
     if (practiceMode) {
         practiceMode = 0;
-        document.getElementById('playlistContainer').style.backgroundColor = '#f2f2f2';
+        document.getElementById('liveButton').style.backgroundColor = '#3333cc';
     } else {
         practiceMode = 1;
-        document.getElementById('playlistContainer').style.backgroundColor = '#ffffff';
+        document.getElementById('liveButton').style.backgroundColor = '#808080';
     }
 }

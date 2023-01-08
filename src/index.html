@@ -66,6 +66,7 @@
     </head>
     <body onload="handleDevices()"> 
         <div id="header">
+        <div id="headerInside">
             <!-- jPlayer Controls -->
             <div id="jquery_jplayer_1"></div>
             <div id="jp_container_1" class="jp-audio">
@@ -74,8 +75,6 @@
                         <ul class="jp-controls">
                             <li><a href="javascript:;" class="jp-play" tabindex="1"><img src="images/playButton.png" alt="Play button"></a></li>
                             <li><a href="javascript:;" class="jp-pause" tabindex="1"><img src="images/pauseButton.png" alt="Pause button"></a></li>
-                            <li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute"><img src="images/volumeButton.png" alt="Volume Icon"></a></li>
-                            <li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute"><img src="images/muteButton.png" alt="Mute button"></a></li>
                         </ul>
                         <div class="jp-progress">
                             <div class="jp-seek-bar">
@@ -85,18 +84,16 @@
                         <div class="jp-time-holder">
                             <div class="jp-current-time"></div>
                         </div>
-                        <div class="jp-volume-bar">
-                            <div class="jp-volume-bar-value"></div>
-                        </div>
                         <div class="jp-no-solution">
                             <span>Player Error</span>
                         </div>
                     </div>
                 </div>
-                <button type="button" onclick="toggleMode();">Toggle Mode</button>
             </div>
+            <button type="button" id="liveButton" class="button2" style="float:right;" onclick="toggleMode();">Live Mode</button>
             <!-- Second, invisible jPlayer for metronome track -->
             <div id="jquery_jplayer_2"></div>
+        </div>
         </div>
         <!-- Device selectors -->
         <div id="accordion">

@@ -21,7 +21,11 @@ function renderPlaylist() {
         const track = document.createElement('div');
         track.innerHTML += '<div class="trackContainer" id="trackContainer' + i + '">' +
                              '<div class="trackHeader"><div class="trackName" id="trackName' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(1, \'trackName\' + trackIdentifier);"><h3 id="trackHeader' + i + '">' + playlist.tracks[i].name + '</h3></div>' +
-                             '<button type="button" class="button2" style="float: right;" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button></div>' +
+                             '<div class="trackPause" id="trackPause' + i + '" style="float: right;" onclick="trackIdentifier = ' + i + '; editingHandler(2, \'trackPause\' + trackIdentifier);">' + playlist.tracks[i].continuePause + '</div>' +
+                             '<button id="toggleButton' + i + '" type="button" class="button2" style="float: right;" onclick="toggleContinue(\'' + i + '\');">Toggle continue</button>' +
+                             '<button type="button" class="button2" style="float: right;" onclick="deleteTrack(\'' + i + '\');">Delete track</button>' +
+                             '<button type="button" class="button2" style="float: right;" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button>' +
+                             '</div>' +
                              '<div class="trackContent"><button type="button" class="button4" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 1; ' +
                                'currentDirectory = path.join(__dirname, \'../audio\');' +
@@ -34,9 +38,7 @@ function renderPlaylist() {
                                'readDirectoryTracks();' +
                                '$(\'#trackSelector\').dialog(\'open\');">Metronome File</button>' +
                              '<div class="trackFileMetronome">' + path.basename(playlist.tracks[i].fileMetronome) + '</div></div>' +
-                             '<div class="trackFooter"><button id="toggleButton' + i + '" type="button" class="button2" onclick="toggleContinue(\'' + i + '\');">Toggle continue</button>' +
-                             '<div class="trackPause" id="trackPause' + i + '" onclick="trackIdentifier = ' + i + '; editingHandler(2, \'trackPause\' + trackIdentifier);">' + playlist.tracks[i].continuePause + '</div>' +
-                             '<button type="button" class="button2" style="float: right;" onclick="deleteTrack(\'' + i + '\');">Delete track</button></div>' +
+                             
                             '</div>';
         document.getElementById('playlistContainer').appendChild(track);
         // Shade the Toggle Continue button appropriately
