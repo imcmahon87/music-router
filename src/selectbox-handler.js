@@ -42,7 +42,7 @@ function styleSelectBoxMain() {
               this.setAttribute("class", "same-as-selected");
               // Next two lines for device-controller
               dropdownMain = Number(this.id) + 1;
-              updateDevices();
+              updateDevicesMain();
               break;
             }
           }
@@ -130,7 +130,7 @@ function styleSelectBoxMetronome() {
               this.setAttribute("class", "same-as-selected");
               // Next two lines for device-controller
               dropdownMetronome = Number(this.id) + 1;
-              updateDevices();
+              updateDevicesMetronome();
               break;
             }
           }

@@ -24,7 +24,7 @@ function renderPlaylist() {
                              '<div class="trackPause" id="trackPause' + i + '" style="float: right;" onclick="trackIdentifier = ' + i + '; editingHandler(2, \'trackPause\' + trackIdentifier);">' + playlist.tracks[i].continuePause + '</div>' +
                              '<button id="toggleButton' + i + '" type="button" class="button2" style="float: right;" onclick="toggleContinue(\'' + i + '\');">Toggle continue</button>' +
                              '<button type="button" class="button2" style="float: right;" onclick="deleteTrack(\'' + i + '\');">Delete track</button>' +
-                             '<button type="button" class="button2" style="float: right;" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button>' +
+                             '<button id="activeButton' + i + '" type="button" class="button2" style="float: right;" onclick="activeTrack = ' + i + '; setActiveTrack();">Set active</button>' +
                              '</div>' +
                              '<div class="trackContent"><button type="button" class="button4" onclick="trackIdentifier = ' + i + '; ' +
                                'trackIdentifierMain = 1; ' +
@@ -74,7 +74,15 @@ function setActiveTrack() {
             document.getElementById('trackContainer' + i).style.backgroundColor = '#404040';
         }
         activeDiv.style.backgroundColor = '#400080';
-    
+        // Set active button to blue and all others to gray
+        for (let i = 0; i < playlist.tracks.length; i++) {
+            if (i == activeTrack) {
+                document.getElementById('activeButton' + i).style.backgroundColor = '#3333cc';
+            } else {
+                document.getElementById('activeButton' + i).style.backgroundColor = '#808080';
+            }
+        }
+
         trackMain = playlist.tracks[activeTrack].fileMain;
         trackMetronome = playlist.tracks[activeTrack].fileMetronome;
         $('#jquery_jplayer_1').jPlayer('setMedia', {

@@ -49,13 +49,21 @@ function handleDevices() {
                 }
             }
         });
-        // Upon initial load, set the selected option to the correct saved default
-        document.getElementById('deviceSelectorMain').value = autoDisplayMain;
-        document.getElementById('deviceSelectorMetronome').value = autoDisplayMetronome;
-        dropdownMain = document.getElementById('deviceSelectorMain').value;
-        dropdownMetronome = document.getElementById('deviceSelectorMetronome').value;
-        audioDevices.main.setSinkId(currentDevices.deviceMain);
-        audioDevices.metronome.setSinkId(currentDevices.deviceMetronome);
+
+        // Upon initial load, if the default devices are available then load them
+        let checkMain = deviceList.includes(currentDevices.deviceMain);
+        let checkMetronome = deviceList.includes(currentDevices.deviceMetronome);
+        if (checkMain) {
+            dropdownMain = document.getElementById('deviceSelectorMain').value;
+            document.getElementById('deviceSelectorMain').value = autoDisplayMain;
+            audioDevices.main.setSinkId(currentDevices.deviceMain);
+        }
+        if (checkMetronome) {
+            dropdownMetronome = document.getElementById('deviceSelectorMetronome').value;
+            document.getElementById('deviceSelectorMetronome').value = autoDisplayMetronome;
+            audioDevices.metronome.setSinkId(currentDevices.deviceMetronome);
+        }
+
         styleSelectBoxMain();
         styleSelectBoxMetronome();
     })
@@ -66,19 +74,21 @@ function handleDevices() {
 }
 
 // Update devices when dropdown menu changes
-function updateDevices() {
+function updateDevicesMain() {
     // Assign devices to HTML audio elements
     let selectMain = dropdownMain;
-    let selectMetronome = dropdownMetronome;
-    //dropdownMain = deviceList[selectMain];
-    //dropdownMetronome = deviceList[selectMetronome];
     audioDevices.main.setSinkId(deviceList[selectMain]);
-    audioDevices.metronome.setSinkId(deviceList[selectMetronome]);
-
     // Automatically save settings to JSON file
     currentDevices.deviceMain = deviceList[selectMain];
-    currentDevices.deviceMetronome = deviceList[selectMetronome];
+    fs.writeFileSync('default-devices.json', JSON.stringify(currentDevices, null, 2));
+}
 
+function updateDevicesMetronome() {
+    // Assign devices to HTML audio elements
+    let selectMetronome = dropdownMetronome;
+    audioDevices.metronome.setSinkId(deviceList[selectMetronome]);
+    // Automatically save settings to JSON file
+    currentDevices.deviceMetronome = deviceList[selectMetronome];
     fs.writeFileSync('default-devices.json', JSON.stringify(currentDevices, null, 2));
 }
 
