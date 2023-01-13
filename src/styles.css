@@ -200,6 +200,10 @@ body {
     margin-top: 0.75em;
 }
 
+#fullscreenButton {
+    margin-top:0.75em;
+}
+
 .inputTrack {
     background-color: #ffffff;
     font-size: 1em;

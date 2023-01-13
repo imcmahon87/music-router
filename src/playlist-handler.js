@@ -6,6 +6,9 @@ let trackIdentifierMain = 0;
 let activeTrack = 0;
 // Used in selector-playlists.js
 let playlistFile = 'No playlist file';
+// For toggling fullscreen
+let fullscreen = false;
+let elem = document.documentElement;
 
 let trackMain = '';
 let trackMetronome = '';
@@ -182,6 +185,18 @@ function deletePlaylistExecute() {
     }
     closePlaylistExecute();
     $('#deletePlaylistPrompt').dialog('close');
+}
+
+function toggleFullscreen() {
+    if (!fullscreen) {
+        document.getElementById('fullscreenButton').style.background = '#3333cc';
+        elem.requestFullscreen();
+        fullscreen = true;
+    } else {
+        document.getElementById('fullscreenButton').style.background = '#808080';
+        document.exitFullscreen();
+        fullscreen = false;
+    }
 }
 
 

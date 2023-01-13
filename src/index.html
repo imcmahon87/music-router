@@ -67,6 +67,7 @@
     <body onload="handleDevices()"> 
         <div id="header">
         <div id="headerInside">
+            <button type="button" id="fullscreenButton" class="button2" style="float: left;" onclick="toggleFullscreen();">Fullscreen</button>
             <!-- jPlayer Controls -->
             <div id="jquery_jplayer_1"></div>
             <div id="jp_container_1" class="jp-audio">
@@ -90,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <button type="button" id="liveButton" class="button2" style="float:right;" onclick="toggleMode();">Live Mode</button>
+            <button type="button" id="liveButton" class="button2" style="float: right;" onclick="toggleMode();">Live Mode</button>
             <!-- Second, invisible jPlayer for metronome track -->
             <div id="jquery_jplayer_2"></div>
         </div>

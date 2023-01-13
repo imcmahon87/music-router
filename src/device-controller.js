@@ -39,11 +39,9 @@ function handleDevices() {
 
                     // If it matches the saved default, then store the index of it to display automatically
                     if (deviceList[counter] === currentDevices.deviceMain) {
-                        console.log(counter);
                         autoDisplayMain = counter;
                     }
                     if (deviceList[counter] === currentDevices.deviceMetronome) {
-                        console.log('metro' + counter);
                         autoDisplayMetronome = counter;
                     }
                 }
