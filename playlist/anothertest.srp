@@ -2,14 +2,14 @@
   "name": "New Playlist",
   "tracks": [
     {
-      "name": "New Traceeeeeee",
+      "name": "New Track",
       "fileMain": "",
       "fileMetronome": "",
       "continue": 0,
       "continuePause": 0
     },
     {
-      "name": "New Trackfffff",
+      "name": "New Track 2",
       "fileMain": "",
       "fileMetronome": "",
       "continue": 0,
